@@ -1,0 +1,16 @@
+1- Spanish census data 2021-2025
+  Source: https://www.ine.es/jaxiT3/Tabla.htm?t=68065
+
+2- Renta media por hogar.
+  Source: https://www.ine.es/dynt3/inebase/index.htm?padre=12385&capsel=12384
+
+3- Densidad de poblacion (hay que sacarla de un archivo shp)
+  Source: https://www.miteco.gob.es/es/cartografia-y-sig/ide/descargas/reto-demografico/datos-demograficos.html
+  Fuente: «© Ministerio para la Transición Ecológica y el Reto Demográfico»
+
+4- Numero de parados por cada 1000 habitantes diciembre 2022. (hay que sacarla de un archivo shp)
+    Source https://www.miteco.gob.es/es/cartografia-y-sig/ide/descargas/reto-demografico/datos-economicos.html
+     Fuente: «© Ministerio para la Transición Ecológica y el Reto Demográfico»
+
+
+Transformaciones:
