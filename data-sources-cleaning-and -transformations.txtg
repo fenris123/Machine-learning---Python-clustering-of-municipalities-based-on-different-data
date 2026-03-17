@@ -12,5 +12,21 @@
     Source https://www.miteco.gob.es/es/cartografia-y-sig/ide/descargas/reto-demografico/datos-economicos.html
      Fuente: «© Ministerio para la Transición Ecológica y el Reto Demográfico»
 
+The data where retrieved in 17/03/2026
+
 
 Transformaciones:
+
+  Spanish census data 2021-2025
+  Se eliminan filas donde la columna Municipios está vacía.
+  Se filtran filas para conservar únicamente aquellas donde Sexo es "Total" y el Periodo es 2021 o 2025.
+  La columna "Municipios" se divide en dos: "Código municipal" (el código) y "Municipio" (el nombre).
+  Se eliminan las columnas "Total Nacional", "Sexo" y la columna original "Municipios" por no aportar información relevante.
+
+  
+  Renta media por hogar
+  Se filtran filas para conservar únicamente aquellas donde el Periodo es 2023.
+  Se filtran filas para conservar únicamente aquellas cuyo indicador es "Renta neta media por persona".
+  La columna "Municipios" se divide en dos: "Código municipal" (el código) y "Municipio" (el nombre).
+  Se eliminan las columnas "Municipios", "Distritos", "Secciones" y "Indicadores de renta media" por no aportar información relevante.
+
