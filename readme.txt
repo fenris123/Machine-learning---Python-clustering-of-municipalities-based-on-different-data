@@ -1,3 +1,69 @@
 This is a proyect to make a ML proyect to clustering the spanish municipalities acording to data related to them.
 
+
+DATA SOURCES, AND TRANSFORMATION MADE TO THAT DATA SOURCES.
+
+1- Spanish census data 2021-2025
+  Source: https://www.ine.es/jaxiT3/Tabla.htm?t=68065
+
+2- Renta media por hogar.
+  Source: https://www.ine.es/dynt3/inebase/index.htm?padre=12385&capsel=12384
+
+3- Densidad de poblacion (hay que sacarla de un archivo shp)
+  Source: https://www.miteco.gob.es/es/cartografia-y-sig/ide/descargas/reto-demografico/datos-demograficos.html
+  Fuente: «© Ministerio para la Transición Ecológica y el Reto Demográfico»
+
+4- Numero de parados por cada 1000 habitantes diciembre 2022. (hay que sacarla de un archivo shp)
+    Source https://www.miteco.gob.es/es/cartografia-y-sig/ide/descargas/reto-demografico/datos-economicos.html
+     Fuente: «© Ministerio para la Transición Ecológica y el Reto Demográfico»
+
+The data where retrieved in 17/03/2026
+
+
+Transformaciones:
+
+  Spanish census data 2021-2025
+  Se eliminan filas donde la columna Municipios está vacía.
+  Se filtran filas para conservar únicamente aquellas donde Sexo es "Total" y el Periodo es 2021 o 2025.
+  La columna Municipios se divide en dos: Código municipal (el código) y Municipio (el nombre).
+  Se eliminan las columnas Total Nacional, Sexo y la columna original Municipios por no aportar información relevante.
+  Se despivotan los valores de Periodo para que 2021 y 2025 sean columnas independientes (Población 2021 y Población 2025).
+  Se limpian los valores de población eliminando los puntos usados como separador de miles y se convierten a numérico.
+  Se calcula la columna Variación % población, indicando el porcentaje de cambio entre 2021 y 2025.
+
+  
+  Renta media por hogar
+  Se filtran filas para conservar únicamente aquellas donde el Periodo es 2023.
+  Se filtran filas para conservar únicamente aquellas cuyo indicador es "Renta neta media por persona".
+  La columna Municipios se divide en dos: Código municipal (el código) y Municipio (el nombre).
+  Se eliminan las columnas Municipios, Distritos, Secciones, Indicadores de renta media y Periodo por no aportar información relevante.
+  Se limpian los valores de renta eliminando los puntos de miles y convirtiendo la coma decimal a punto.
+  Se convierten los valores de renta a numérico, asignando NaN en caso de valores no válidos.
+  Se agrupan los registros por municipio (Código municipal y Municipio) y se calcula la renta media por persona como promedio de los valores disponibles por  municipio.
+
+
+  Densidad de población 2023
+  Se carga el shapefile "DensPob2023.shp" usando geopandas.
+  Se extraen únicamente las columnas necesarias: nombre del municipio, código municipal y densidad de población.
+  Se renombraron las columnas a: "Municipio", "Código municipal" y "Densidad de población" para mayor claridad y coherencia con los anteriores.
+  Se eliminó el GeoDataFrame original para liberar memoria.
+
+
+
+  Parados por cada 1000 personas
+  Se carga el shapefile "NumParados_2022.shp" usando geopandas.
+  Se extraen únicamente las columnas necesarias: nombre del municipio, código municipal y Parados por 1000.
+  Se renombraron las columnas a: "Municipio", "Código municipal" y "Parados por 1000" para mayor claridad y coherencia con los anteriores.
+  Se eliminó el GeoDataFrame original para liberar memoria.
+
+
+
+
+Finalmente se unen todos esos datos en un solo df. El join se realizara por el codigo municipal.  El nombre del municipio se tomara el presente en los datos del censo.
+
+IMPORTANTE:  Hay 8 municipios que aparecen solo en 2 de los listados iniciales.  Se ha optado por directamente eliminarlos.
+
+
+
+
 WARNING:  WORK IN PROGRESS.
