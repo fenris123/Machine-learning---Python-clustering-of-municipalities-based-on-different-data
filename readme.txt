@@ -1,8 +1,18 @@
 This is a proyect to make a ML proyect to clustering the spanish municipalities acording to data related to them.
 
+WARNING:  WORK IN PROGRESS.
 
-DATA SOURCES, AND TRANSFORMATION MADE TO THAT DATA SOURCES.
 
+
+1- FUENTES DE DATOS Y TRANSFORMACIONES REALIZADAS A ESAS FUENTES DE DATOS.
+
+Todas estas transformaciones para preparar nuestros datos seran realizadas por el script Preparacion_datos.py, que nos devolvera un .csv
+Ese .csv ya estara listo para iniciar el proceso de agrupacion.
+Es posible que el proceso de agrupacion requiera  alguna transformación adicional para realizarse.
+En este proceso solo hemos querido incluir la preparacion basica de los datos desde varias fuentes a un solo archivo.  
+Operaciones como un posible análisis de componentes principales por ejemplo, aunque sean en puridad transformaciones, tienen mas sentido en pasos posteriores.
+
+FUENTES.
 1- Spanish census data 2021-2025
   Source: https://www.ine.es/jaxiT3/Tabla.htm?t=68065
 
@@ -66,4 +76,4 @@ IMPORTANTE:  Hay 8 municipios que aparecen solo en 2 de los listados iniciales. 
 
 
 
-WARNING:  WORK IN PROGRESS.
+
