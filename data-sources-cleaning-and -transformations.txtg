@@ -20,13 +20,19 @@ Transformaciones:
   Spanish census data 2021-2025
   Se eliminan filas donde la columna Municipios está vacía.
   Se filtran filas para conservar únicamente aquellas donde Sexo es "Total" y el Periodo es 2021 o 2025.
-  La columna "Municipios" se divide en dos: "Código municipal" (el código) y "Municipio" (el nombre).
-  Se eliminan las columnas "Total Nacional", "Sexo" y la columna original "Municipios" por no aportar información relevante.
+  La columna Municipios se divide en dos: Código municipal (el código) y Municipio (el nombre).
+  Se eliminan las columnas Total Nacional, Sexo y la columna original Municipios por no aportar información relevante.
+  Se despivotan los valores de Periodo para que 2021 y 2025 sean columnas independientes (Población 2021 y Población 2025).
+  Se limpian los valores de población eliminando los puntos usados como separador de miles y se convierten a numérico.
+  Se calcula la columna Variación % población, indicando el porcentaje de cambio entre 2021 y 2025.
 
   
   Renta media por hogar
   Se filtran filas para conservar únicamente aquellas donde el Periodo es 2023.
   Se filtran filas para conservar únicamente aquellas cuyo indicador es "Renta neta media por persona".
-  La columna "Municipios" se divide en dos: "Código municipal" (el código) y "Municipio" (el nombre).
-  Se eliminan las columnas "Municipios", "Distritos", "Secciones" y "Indicadores de renta media" por no aportar información relevante.
+  La columna Municipios se divide en dos: Código municipal (el código) y Municipio (el nombre).
+  Se eliminan las columnas Municipios, Distritos, Secciones, Indicadores de renta media y Periodo por no aportar información relevante.
+  Se limpian los valores de renta eliminando los puntos de miles y convirtiendo la coma decimal a punto.
+  Se convierten los valores de renta a numérico, asignando NaN en caso de valores no válidos.
+  Se agrupan los registros por municipio (Código municipal y Municipio) y se calcula la renta media por persona como promedio de los valores disponibles por municipio.
 
