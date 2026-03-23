@@ -74,6 +74,18 @@ Finalmente se unen todos esos datos en un solo df. El join se realizara por el c
 IMPORTANTE:  Hay 8 municipios que aparecen solo en 2 de los listados iniciales.  Se ha optado por directamente eliminarlos.
 
 
+2 PRIMER ANALISIS DE LAS VARIABLES MEDIANTE UN HISTOGRAMA.
+
+Se procede a representar un histograma de las diferentes variables.  Encontramos que Poblacion y Densidad de Poblacion estan demasiado agrupadas, habiendo por ejemplo muchisimos municipios pequeños y muy pocos grandes que son invisibles, por lo que añadimos una representacion logaritmica para esas dos variables.
+
+
+
+3 COMPROBACION DE EXISTENCIA O NO DE CORRELACIÓN ENTRE VARIABLES.
+
+Comprobamos la existencia o no de correlacion entre las variables que hemos tomado para hacer el analisis. (poblacion 2025, variacion de la poblacion entre 2021 y 2025, renta media por persona, densidad de poblacion, y parados por cada mil.
+
+Hay una correlacion de 0.31 y otra de 0.48. El resto esta por debajo de 0.1 asi que consideramos que (sobre todo para un proyecto personal) la independencia de las variables es mas que suficiente y no merece la pena hacer un analisis de componente principales.
+
 
 
 
