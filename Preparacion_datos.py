@@ -5,13 +5,14 @@ Estructura de directorios esperada:
 
 Proyecto/
 │
-├─ Entrada/                <- Carpeta donde se colocan los archivos de datos
+|-- Entrada/                <- Carpeta donde se colocan los archivos de datos
 │   ├─ censo municipal 2021-2025.csv
 │   ├─ renta media por hogar.csv
 │   ├─ DensPob2023.shp
 │   └─ NumParados_2022.shp
-│
-└─ este_script.py          <- Script que realiza la transformación
+│--Intermedio
+|
+|-- este_script.py          <- Script que realiza la transformación
 
 Descripción:
 
