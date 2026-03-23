@@ -231,4 +231,4 @@ print(f"Número de municipios tras el merge: {len(df_final)}")
 
 
 # PASO FINAL:  Sacamos el archivo a csv
-df_final.to_csv(os.path.join(base_dir, "df_municipios_completo.csv"), index=False, sep=";")
+df_final.to_csv(os.path.join(base_dir, "Intermedio/f_municipios_completo.csv"), index=False, sep=";")
