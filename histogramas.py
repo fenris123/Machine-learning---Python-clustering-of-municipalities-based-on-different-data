@@ -9,14 +9,21 @@ Histogramas de columnas numéricas de municipios:
 - Logarítmicos para Población y Densidad (en unidades reales)
 """
 
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
-# Leer CSV
-ruta_csv = r"W:\espaciopython\proyecto_ml_municipios\Intermedio\f_municipios_completo.csv"
-df = pd.read_csv(ruta_csv, sep=';')
+
+base_dir = os.path.dirname(os.path.abspath(__file__))
+entrada_dir = os.path.join(base_dir, "Intermedio")
+archivo_municipios = os.path.join(entrada_dir, "f_municipios_completo.csv")
+
+try:
+    df= pd.read_csv(archivo_municipios, encoding='utf-8', sep=";")  # prueba con utf-8
+except UnicodeDecodeError:
+    df= pd.read_csv(archivo_municipios, encoding='latin1',sep =";")  # fallback si hay acentos
 
 # Columnas a graficar
 cols_numericas = [
