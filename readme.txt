@@ -1,7 +1,9 @@
 This is a proyect to make a ML proyect to clustering the spanish municipalities acording to data related to them.
 
 
+Por motivos didacticos se ha dejado el script de cada paso por separado, para ir ejecutando uno por uno
 
+El orden es preparacion_datos, histograma y correlacion_variables, analisis_codo, algoritmo_agrupacion  y visualizacion
 
 
 1- FUENTES DE DATOS Y TRANSFORMACIONES REALIZADAS A ESAS FUENTES DE DATOS.
