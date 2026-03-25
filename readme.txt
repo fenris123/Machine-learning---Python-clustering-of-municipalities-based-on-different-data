@@ -50,6 +50,7 @@ Transformaciones:
   Se limpian los valores de renta eliminando los puntos de miles y convirtiendo la coma decimal a punto.
   Se convierten los valores de renta a numérico, asignando NaN en caso de valores no válidos.
   Se agrupan los registros por municipio (Código municipal y Municipio) y se calcula la renta media por persona como promedio de los valores disponibles por  municipio.
+  Se eliminan los municipios con renta media no disponible.  (73 municipios con un maximo de poblaccion de 116 personas. No afectara mucho al analisis. Simplemente se podrian llegar a considerar un grupo propio a la hora de representarlos en un mapa)
 
 
   Densidad de población 2023
@@ -76,8 +77,7 @@ IMPORTANTE:  Hay 8 municipios que aparecen solo en 2 de los listados iniciales. 
 
 2 PRIMER ANALISIS DE LAS VARIABLES MEDIANTE UN HISTOGRAMA.
 
-Se procede a representar un histograma de las diferentes variables.  Encontramos que Poblacion y Densidad de Poblacion estan demasiado agrupadas, habiendo por ejemplo muchisimos municipios pequeños y muy pocos grandes que son invisibles, por lo que añadimos una representacion logaritmica para esas dos variables.
-
+Se procede a representar un histograma de las diferentes variables.  Encontramos que Poblacion y Densidad de Poblacion estan demasiado agrupadas, habiendo por ejemplo muchisimos municipios pequeños y muy pocos grandes que son invisibles, por lo que añadimos una representacion logaritmica para esas dos variables durante el analisis.
 
 
 3 COMPROBACION DE EXISTENCIA O NO DE CORRELACIÓN ENTRE VARIABLES.
@@ -87,5 +87,7 @@ Comprobamos la existencia o no de correlacion entre las variables que hemos toma
 Hay una correlacion de 0.31 y otra de 0.48. El resto esta por debajo de 0.1 asi que consideramos que (sobre todo para un proyecto personal) la independencia de las variables es mas que suficiente y no merece la pena hacer un analisis de componente principales.
 
 
+4 DETERMINACION DEL NUMERO OPTIMO DE GRUPOS MEDIANTE LA TECNICA DEL CODO.
 
+Se elige un numero de grupos de 10.
 
