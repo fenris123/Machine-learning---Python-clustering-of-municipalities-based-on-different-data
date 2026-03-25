@@ -4,14 +4,23 @@ Created on Mon Mar 23 13:34:35 2026
 
 @author: fenris123
 """
+
+# pip install pandas matplotlib seaborn
+
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-ruta_csv = r"W:\espaciopython\proyecto_ml_municipios\Intermedio\f_municipios_completo.csv"
-df = pd.read_csv(ruta_csv, sep=';')  # separador correcto
+# --- Rutas dinámicas ---
+base_dir = os.path.dirname(os.path.abspath(__file__))
+entrada_dir = os.path.join(base_dir, "Intermedio")
+archivo_csv = os.path.join(entrada_dir, "f_municipios_completo.csv")
 
-# Seleccionar solo las columnas numéricas que quieres analizar
+# --- Cargar datos ---
+df = pd.read_csv(archivo_csv, sep=';')
+
+# --- Columnas numéricas ---
 cols_numericas = [
     'Población 2025',
     'Variación % población',
@@ -22,12 +31,8 @@ cols_numericas = [
 
 df_num = df[cols_numericas]
 
-# Información general y estadísticas
-print(df_num.info())
-print(df_num.describe())
-
-
-# Mapa de calor de correlaciones
+# --- Mapa de calor ---
 plt.figure(figsize=(10,8))
 sns.heatmap(df_num.corr(), annot=True, fmt=".2f", cmap="coolwarm")
+plt.title("Matriz de correlación")
 plt.show()
