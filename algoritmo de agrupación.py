@@ -56,7 +56,9 @@ plt.grid(True)
 plt.show()
 
 
-# --- Guardar el DataFrame con los clusters ---
-salida_csv = os.path.join(entrada_dir, "municipios_clusterizados.csv")
-df_cluster.to_csv(salida_csv, index=False, sep=";")
-print(f"Archivo guardado en: {salida_csv}")
+# --- Guardar el DataFrame con los clusters en la carpeta Intermedio ---
+resultado_dir = os.path.join(base_dir, "Intermedio")
+resultado_csv = os.path.join(resultado_dir, "municipios_clusterizados.csv")
+
+df_cluster.to_csv(resultado_csv, index=False, sep=";")
+print(f"Archivo guardado en: {resultado_csv}")
