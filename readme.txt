@@ -91,3 +91,7 @@ Hay una correlacion de 0.31 y otra de 0.48. El resto esta por debajo de 0.1 asi 
 
 Se elige un numero de grupos de 10.
 
+5 EJECUCION DEL ALGORITMO DE AGRUPACION.
+
+
+
