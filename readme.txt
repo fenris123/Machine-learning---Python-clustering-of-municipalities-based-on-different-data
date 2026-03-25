@@ -1,6 +1,6 @@
 This is a proyect to make a ML proyect to clustering the spanish municipalities acording to data related to them.
 
-WARNING:  WORK IN PROGRESS.
+
 
 
 
@@ -94,4 +94,7 @@ Se elige un numero de grupos de 10.
 5 EJECUCION DEL ALGORITMO DE AGRUPACION.
 
 
+6  VISUALIZACION DE LOS DATOS EN UN MAPA SHP.
+
+Se ha eliminado canarias por problema de tamaño para incluirlo todo en una sola imagen.  Se puede crear una representacion para ella sola.
 
