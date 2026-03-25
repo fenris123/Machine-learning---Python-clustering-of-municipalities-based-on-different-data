@@ -103,6 +103,9 @@ Se ha eliminado canarias por problema de tamaño para incluirlo todo en una sola
 
 
 
+NOTA SOBRE POSIBLES ERRORES:
 
+Este es un proyecto personal, no profesional,  centrado sobre todo en aprender, en  jugar con los datos del INE  y en "ver si era posible".
+Hemos cometido algunos errores durante el proyecto que hemos ido corrigiendo posteriormente tanto en los archivos originales como aqui, pero si se nos ha pasado alguno, rogamos que se nos disculpe.
 
 
