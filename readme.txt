@@ -95,8 +95,14 @@ Se elige un numero de grupos de 10.
 
 5 EJECUCION DEL ALGORITMO DE AGRUPACION.
 
+incluye normalizacion de los datos.
 
 6  VISUALIZACION DE LOS DATOS EN UN MAPA SHP.
 
 Se ha eliminado canarias por problema de tamaño para incluirlo todo en una sola imagen.  Se puede crear una representacion para ella sola.
 
+
+
+NOTA FINAL:
+
+Podria haberse planteado normalizar las variables para que todas pesasen lo mismo.
