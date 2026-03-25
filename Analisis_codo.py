@@ -1,8 +1,11 @@
+# pip install pandas matplotlib scikit-learn
 import os
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
-import numpy as np
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler   # <-- AÑADIDO
 
 # --- Carga de datos ---
 base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -14,36 +17,70 @@ try:
 except UnicodeDecodeError:
     df = pd.read_csv(archivo_municipios, encoding='latin1', sep=";")
 
-
-# --- Filtrar filas con Población 2025 y Densidad > 0 para poder aplicar log ---
+# --- Filtrar ---
 df_cluster = df[(df['Población 2025'] > 0) & (df['Densidad de población'] > 0)].copy()
 
-# --- Aplicar logaritmo natural a Población 2025 y Densidad de población ---
+# --- Log ---
 df_cluster['Población 2025'] = np.log(df_cluster['Población 2025'])
 df_cluster['Densidad de población'] = np.log(df_cluster['Densidad de población'])
 
-# --- Selección de columnas para clustering (sin Código municipal) ---
-X = df_cluster[
-    ['Población 2025', 'Variación % población', 'Renta neta media por persona',
-     'Densidad de población', 'Parados por 1000']
+# --- Variables ---
+columnas = [
+    'Población 2025',
+    'Variación % población',
+    'Renta neta media por persona',
+    'Densidad de población',
+    'Parados por 1000'
 ]
 
+# --- Eliminar NaN ---
+df_cluster = df_cluster.dropna(subset=columnas)
+
+X = df_cluster[columnas]
+
+# --- NORMALIZACIÓN ---
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
 
 
-# --- Técnica del codo ---
 wcss = []
-k_range = range(1, 15)
+k_range = range(1, 11)
 
 for k in k_range:
     kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
-    kmeans.fit(X)
+    kmeans.fit(X_scaled)
     wcss.append(kmeans.inertia_)
 
 # --- Gráfico del codo ---
 plt.figure(figsize=(8,5))
 plt.plot(k_range, wcss, marker='o')
 plt.xlabel('Número de clusters (k)')
-plt.ylabel('WCSS')
-plt.title('Técnica del codo')
+plt.ylabel('WCSS (inercia)')
+plt.title('Técnica del codo (datos normalizados)')
+plt.grid(True)
+plt.show()
+
+
+kmeans = KMeans(n_clusters=10, random_state=42, n_init=10)
+df_cluster['Cluster'] = kmeans.fit_predict(X_scaled)
+
+
+
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_scaled)
+
+# --- Gráfico ---
+plt.figure(figsize=(10,6))
+scatter = plt.scatter(
+    X_pca[:,0],
+    X_pca[:,1],
+    c=df_cluster['Cluster'],
+    cmap='tab10',
+    alpha=0.3
+)
+plt.xlabel('PCA1')
+plt.ylabel('PCA2')
+plt.title('Clusters de municipios (K-Means, 10 grupos) - PCA')
+plt.colorbar(scatter, label='Cluster')
 plt.grid(True)
 plt.show()
