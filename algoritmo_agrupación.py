@@ -12,6 +12,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler   # <-- AÑADIDO
 
 # --- Carga de datos ---
 base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -23,31 +24,49 @@ try:
 except UnicodeDecodeError:
     df = pd.read_csv(archivo_municipios, encoding='latin1', sep=";")
 
-# --- Filtrar filas con Población 2025 y Densidad > 0 para poder aplicar log ---
-#  (opcional en nuestro dataset, porque ya hemos comprobado esos datos antes, lo mantenemos por seguridad)
+# --- Filtrar filas con Población 2025 y Densidad > 0 ---
 df_cluster = df[(df['Población 2025'] > 0) & (df['Densidad de población'] > 0)].copy()
 
-# --- Aplicar logaritmo natural a Población 2025 y Densidad de población ---
+# --- Aplicar logaritmo ---
 df_cluster['Población 2025'] = np.log(df_cluster['Población 2025'])
 df_cluster['Densidad de población'] = np.log(df_cluster['Densidad de población'])
 
-# --- Selección de columnas para clustering (sin Código municipal) ---
-X = df_cluster[
-    ['Población 2025', 'Variación % población', 'Renta neta media por persona',
-     'Densidad de población', 'Parados por 1000']
+# --- Selección de columnas ---
+columnas = [
+    'Población 2025',
+    'Variación % población',
+    'Renta neta media por persona',
+    'Densidad de población',
+    'Parados por 1000'
 ]
+
+# --- Eliminar NaN ---
+df_cluster = df_cluster.dropna(subset=columnas)
+
+# --- Matriz de datos ---
+X = df_cluster[columnas]
+
+# --- NORMALIZACIÓN ---
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
 
 # --- K-Means con 10 clusters ---
 kmeans = KMeans(n_clusters=10, random_state=42, n_init=10)
-df_cluster['Cluster'] = kmeans.fit_predict(X)
+df_cluster['Cluster'] = kmeans.fit_predict(X_scaled)
 
-# --- Reducción de dimensionalidad con PCA para visualización ---
+# --- PCA (IMPORTANTE: sobre datos escalados) ---
 pca = PCA(n_components=2)
-X_pca = pca.fit_transform(X)
+X_pca = pca.fit_transform(X_scaled)
 
 # --- Crear gráfico ---
 plt.figure(figsize=(10,6))
-scatter = plt.scatter(X_pca[:,0], X_pca[:,1], c=df_cluster['Cluster'], cmap='tab10', alpha=0.3)
+scatter = plt.scatter(
+    X_pca[:,0],
+    X_pca[:,1],
+    c=df_cluster['Cluster'],
+    cmap='tab10',
+    alpha=0.3
+)
 plt.xlabel('PCA1')
 plt.ylabel('PCA2')
 plt.title('Clusters de municipios (K-Means, 10 grupos) - Proyección PCA')
@@ -55,8 +74,7 @@ plt.colorbar(scatter, label='Cluster')
 plt.grid(True)
 plt.show()
 
-
-# --- Guardar el DataFrame con los clusters en la carpeta Intermedio ---
+# --- Guardar resultado ---
 resultado_dir = os.path.join(base_dir, "Intermedio")
 resultado_csv = os.path.join(resultado_dir, "municipios_clusterizados.csv")
 
