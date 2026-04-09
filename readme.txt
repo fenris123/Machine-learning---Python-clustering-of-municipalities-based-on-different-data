@@ -88,16 +88,15 @@ Comprobamos la existencia o no de correlacion entre las variables que hemos toma
 
 Hay una correlacion de 0.31 y otra de 0.48. El resto esta por debajo de 0.1 asi que consideramos que (sobre todo para un proyecto personal) la independencia de las variables es mas que suficiente y no merece la pena hacer un analisis de componente principales.
 
+4 NORMALIZACION DE LAS VARIABLES
 
-4 DETERMINACION DEL NUMERO OPTIMO DE GRUPOS MEDIANTE LA TECNICA DEL CODO.
+5 DETERMINACION DEL NUMERO OPTIMO DE GRUPOS MEDIANTE LA TECNICA DEL CODO.
 
 Se elige un numero de grupos de 10.
 
-5 EJECUCION DEL ALGORITMO DE AGRUPACION.
+6 EJECUCION DEL ALGORITMO DE AGRUPACION.
 
-incluye normalizacion de las variables.
-
-6  VISUALIZACION DE LOS DATOS EN UN MAPA SHP.
+7  VISUALIZACION DE LOS DATOS EN UN MAPA SHP.
 
 Se ha eliminado canarias por problema de tamaño para incluirlo todo en una sola imagen.  Se puede crear una representacion para ella sola.
 
